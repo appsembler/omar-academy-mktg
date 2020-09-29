@@ -22,6 +22,31 @@
 const { Fragment, Component } = React;
 
 
+function getCookieValue(name) {
+  // Get a cookie.
+  // Source: https://stackoverflow.com/a/25490531
+  const value = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+  return value ? value.pop() : '';
+}
+
+
+function getUserInfo() {
+  const edXUserInfoCookie = getCookieValue('edx-user-info');
+  if (edXUserInfoCookie) {
+    try {
+      return JSON.parse(JSON.parse(edXUserInfoCookie.replace(/\\054/g, ',')));
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  return null;
+}
+
+
+const LEARNER = getUserInfo();
+
+
 class LoadHtml extends Component {
     state = {
         html: '...'
@@ -31,7 +56,6 @@ class LoadHtml extends Component {
         fetch(this.props.url)
           .then(response => response.text())
           .then(data => {
-              console.log('LoadHtml', data)
               this.setState({
                   html: data
               })
@@ -74,19 +98,39 @@ function CoursesPage() {
 }
 
 
+function SignInButton() {
+    return <a href="https://courses.academy.omardo.com/login"
+       className="inline-flex items-center px-4 py-2 bg-white leading-5 font-semibold text-indigo-600 border border-indigo-200 hover:border-indigo-600 focus:border-indigo-600 focus:outline-none focus:shadow-outline rounded-md hover:shadow transition duration-150 ease-in-out">
+      Sign in
+    </a>
+}
+
+
+function UserMenu() {
+    return <Fragment>
+        <span className="mx-4">{`Hello ${LEARNER.username}`}</span>
+        <a href="https://courses.academy.omardo.com/dashboard"
+           className="inline-flex items-center px-4 py-2 bg-white leading-5 font-semibold text-indigo-600 border border-indigo-200 hover:border-indigo-600 focus:border-indigo-600 focus:outline-none focus:shadow-outline rounded-md hover:shadow transition duration-150 ease-in-out">
+            Dashboard
+        </a>
+        <a href="https://courses.academy.omardo.com/logout"
+           className="hover:opacity-50 focus:opacity-50 focus:outline-none transition duration-150 ease-in-out mx-4">
+            Logout
+        </a>
+    </Fragment>
+}
+
+
 function HeaderButtons() {
     return (
         <Fragment>
             <a href="/courses.html"
-               class="hover:opacity-50 focus:opacity-50 focus:outline-none transition duration-150 ease-in-out">Courses</a>
+               className="hover:opacity-50 focus:opacity-50 focus:outline-none transition duration-150 ease-in-out">Courses</a>
             <a href="/certification.html"
-               class="hover:opacity-50 focus:opacity-50 focus:outline-none transition duration-150 ease-in-out mx-8">Certification</a>
-            <span class="shadow-sm rounded-md">
-                <a href="https://courses.academy.omardo.com/login"
-                   class="inline-flex items-center px-4 py-2 bg-white leading-5 font-semibold text-indigo-600 border border-indigo-200 hover:border-indigo-600 focus:border-indigo-600 focus:outline-none focus:shadow-outline rounded-md hover:shadow transition duration-150 ease-in-out">
-                  Sign in
-                </a>
-              </span>
+               className="hover:opacity-50 focus:opacity-50 focus:outline-none transition duration-150 ease-in-out mx-8">Certification</a>
+            <span className="shadow-sm rounded-md">
+            {LEARNER  ?  <UserMenu /> : <SignInButton />}
+          </span>
         </Fragment>
     )
 }
@@ -95,19 +139,19 @@ function HeaderButtons() {
 function Header() {
     return (
         <Fragment>
-            <header class="text-blue-12 relative max-w-screen-xl mx-auto px-6 lg:px-8 pt-6">
-              <nav class="z-10 relative flex items-center justify-between sm:h-10 lg:justify-start">
-                <div class="-mr-3 -mt-2 flex items-center md:hidden">
-                  <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
-                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            <header className="text-blue-12 relative max-w-screen-xl mx-auto px-6 lg:px-8 pt-6">
+              <nav className="z-10 relative flex items-center justify-between sm:h-10 lg:justify-start">
+                <div className="-mr-3 -mt-2 flex items-center md:hidden">
+                  <button type="button" className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                    <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                   </button>
                 </div>
-                <a class="w-32 mr-12" href="/">
+                <a className="w-32 mr-12" href="/">
                     <LoadHtml url="/includes/header-logo.html" />
                 </a>
-                <div class="hidden md:block font-medium ml-auto text-sm">
+                <div className="hidden md:block font-medium ml-auto text-sm">
                   <HeaderButtons />
                 </div>
               </nav>
