@@ -1,236 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>My page</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-    <script src="https://unpkg.com/react@latest/umd/react.development.js" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/react-dom@latest/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/babel-standalone@latest/babel.min.js" crossorigin="anonymous"></script>
-    <!-- Fonts to support Material Design -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-    <!-- Icons to support Material Design -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+      <meta charset="utf-8"/>
+      <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width"/>
+      <script src="https://unpkg.com/react@latest/umd/react.development.js" crossorigin="anonymous"></script>
+      <script src="https://unpkg.com/react-dom@latest/umd/react-dom.development.js"></script>
+      <script src="https://unpkg.com/babel-standalone@latest/babel.min.js" crossorigin="anonymous"></script>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta charset="utf-8">
+      <meta name="msapplication-TileColor" content="#f01d4f">
+      <meta name="msapplication-TileImage" content="/assets/favicon/mstile-150x150.png">
+      <meta name="theme-color" content="#121212">
+      <title>Learn Open edX | Omar Academy</title>
+      <link rel="stylesheet" href="https://university.redislabs.com/assets/css/site.css">
   </head>
   <body>
     <div id="root"></div>
     <script type="text/babel">
-const {
-  colors,
-  CssBaseline,
-  ThemeProvider,
-  Typography,
-  Container,
-  makeStyles,
-  GridListTileBar,
-  ListSubheader,
-  IconButton,
-  GridList,
-  GridListTile,
-  createMuiTheme,
-  SvgIcon,
-  Button,
-  Link,
-  Box,
-} = MaterialUI;
-
-// Create a theme instance.
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: '#556cd6',
-    },
-    secondary: {
-      main: '#19857b',
-    },
-    error: {
-      main: colors.red.A400,
-    },
-    background: {
-      default: '#fff',
-    },
-  },
-});
-
-const tileData = [
-  {
-    img: 'https://material-ui.com/static/images/grid-list/breakfast.jpg',
-    title: 'Breakfast',
-    author: 'jill111',
-    cols: 2,
-    featured: true,
-  },
-  {
-    img: 'https://material-ui.com/static/images/grid-list/burgers.jpg',
-    title: 'Tasty burger',
-    author: 'director90',
-  },
-  {
-    img: 'https://material-ui.com/static/images/grid-list/camera.jpg',
-    title: 'Camera',
-    author: 'Danson67',
-  },
-  {
-    img: 'https://material-ui.com/static/images/grid-list/morning.jpg',
-    title: 'Morning',
-    author: 'fancycrave1',
-    featured: true,
-  },
-  {
-    img: 'https://material-ui.com/static/images/grid-list/hats.jpg',
-    title: 'Hats',
-    author: 'Hans',
-  },
-  {
-    img: 'https://material-ui.com/static/images/grid-list/honey.jpg',
-    title: 'Honey',
-    author: 'fancycravel',
-  },
-  {
-    img: 'https://material-ui.com/static/images/grid-list/vegetables.jpg',
-    title: 'Vegetables',
-    author: 'jill111',
-    cols: 2,
-  },
-  {
-    img: 'https://material-ui.com/static/images/grid-list/plant.jpg',
-    title: 'Water plant',
-    author: 'BkrmadtyaKarki',
-  },
-  {
-    img: 'https://material-ui.com/static/images/grid-list/mushroom.jpg',
-    title: 'Mushrooms',
-    author: 'PublicDomainPictures',
-  },
-  {
-    img: 'https://material-ui.com/static/images/grid-list/olive.jpg',
-    title: 'Olive oil',
-    author: 'congerdesign',
-  },
-  {
-    img: 'https://material-ui.com/static/images/grid-list/star.jpg',
-    title: 'Sea star',
-    cols: 2,
-    author: '821292',
-  },
-  {
-    img: 'https://material-ui.com/static/images/grid-list/bike.jpg',
-    title: 'Bike',
-    author: 'danfador',
-  },
-];
 
 
-function LightBulbIcon(props) {
-  return (
-    <SvgIcon {...props}>
-      <path style={{ color: 'white' }} d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6C7.8 12.16 7 10.63 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z" />
-    </SvgIcon>
-  );
-}
+const { Fragment, Component } = React;
 
-function InfoIcon(props) {
-  return (
-    <SvgIcon {...props}>
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
-    </SvgIcon>
-  );
-}
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    margin: theme.spacing(6, 0, 3),
-  },
-  lightBulb: {
-    verticalAlign: 'middle',
-    marginRight: theme.spacing(1),
-  },
-}));
+class LoadHtml extends Component {
+    state = {
+        html: '...'
+    }
 
-function ProTip() {
-  const classes = useStyles();
-  return (
-    <Typography className={classes.root} color="textSecondary">
-      <LightBulbIcon className={classes.lightBulb} />
-      Pro tip: See more{' '}
-      <Link href="https://material-ui.com/getting-started/templates/">
-        templates
-      </Link>{' '}
-      on the Material-UI documentation.
-    </Typography>
-  );
-}
+    componentDidMount() {
+        fetch(this.props.url)
+          .then(response => response.text())
+          .then(data => {
+              console.log('LoadHtml', data)
+              this.setState({
+                  html: data
+              })
+          });
+    }
 
-function Copyright() {
-  return (
-     <Box component="span" m={2} color="text.primary">
-      <Typography variant="body2" align="center">
-        {'Copyright © '}
-        <Link color="inherit" href="https://material-ui.com/">
-          Your Website
-        </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
-     </Box>
-  );
+    render() {
+        return <div dangerouslySetInnerHTML={{__html: this.state.html}} />
+    }
 }
 
 
-const Images = () => {
-  const classes = useStyles()
+function HomePage() {
+    return (
+        <Layout>
+            <LoadHtml url="/includes/hero.html" />
+            <LoadHtml url="/includes/home-course.html" />
+            <LoadHtml url="/includes/certification-section.html" />
+        </Layout>
+    )
+}
 
-  return (
-     <div className={classes.root}>
-       <GridList cellHeight={160} className={classes.grildList} cols={3}>
-         <GridListTile key="subheader" cols={2} style={{ height: 'auto '}}>
-           <ListSubheader component="div">December</ListSubheader>
-         </GridListTile>
-         {tileData.map(tile => (
-             <GridListTile key={tile.img} cols={tile.cols || 1}>
-               <img src={tile.img} alt={tile.title} />
-               <GridListTileBar
-                 title={tile.title}
-                 subtitle={<span>by: {tile.author}</span>}
-                 actionIcon={
-                   <IconButton aria-label={`info about ${tile.title}`} className={classes.icon}>
-                     <InfoIcon />
-                   </IconButton>
-                 } />
-             </GridListTile>
-         ))}
-       </GridList>
-     </div>
-  )
+
+function CertificationPage() {
+    return (
+        <Layout>
+            <LoadHtml url="/includes/certification-hero.html" />
+            <LoadHtml url="/includes/certification-section.html" />
+        </Layout>
+    )
+}
+
+
+function CoursesPage() {
+    return (
+        <Layout>
+            <LoadHtml url="/includes/courses-section.html" />
+        </Layout>
+    )
+}
+
+
+function HeaderButtons() {
+    return (
+        <Fragment>
+            <a href="/courses.html"
+               class="hover:opacity-50 focus:opacity-50 focus:outline-none transition duration-150 ease-in-out">Courses</a>
+            <a href="/certification.html"
+               class="hover:opacity-50 focus:opacity-50 focus:outline-none transition duration-150 ease-in-out mx-8">Certification</a>
+            <span class="shadow-sm rounded-md">
+                <a href="https://courses.academy.omardo.com/login"
+                   class="inline-flex items-center px-4 py-2 bg-white leading-5 font-semibold text-indigo-600 border border-indigo-200 hover:border-indigo-600 focus:border-indigo-600 focus:outline-none focus:shadow-outline rounded-md hover:shadow transition duration-150 ease-in-out">
+                  Sign in
+                </a>
+              </span>
+        </Fragment>
+    )
+}
+
+
+function Header() {
+    return (
+        <Fragment>
+            <header class="text-blue-12 relative max-w-screen-xl mx-auto px-6 lg:px-8 pt-6">
+              <nav class="z-10 relative flex items-center justify-between sm:h-10 lg:justify-start">
+                <div class="-mr-3 -mt-2 flex items-center md:hidden">
+                  <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                  </button>
+                </div>
+                <a class="w-32 mr-12" href="/">
+                    <LoadHtml url="/includes/header-logo.html" />
+                </a>
+                <div class="hidden md:block font-medium ml-auto text-sm">
+                  <HeaderButtons />
+                </div>
+              </nav>
+            </header>
+        </Fragment>
+    )
+}
+
+
+function Layout({children}) {
+    return (
+        <Fragment>
+            <Header />
+            <main role="main">
+                {children}
+            </main>
+            <LoadHtml url="/includes/footer.html" />
+        </Fragment>
+    )
+}
+
+
+function Router() {
+    let Page;
+    const url = location.pathname;
+
+    switch (true) {
+        case /certification/.test(url):
+            return <CertificationPage />
+        case /courses/.test(url):
+            return <CoursesPage />
+        default:
+            return <HomePage />
+    }
 }
 
 function App() {
-  return (
-    <Container fixed>
-      <div style={{ marginTop: 24, }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          CDN v4-beta example3
-        </Typography>
-        <Button variant="contained" color="primary">Call to Action</Button>
-
-        <Images />
-
-        <ProTip />
-        <Copyright />
-      </div>
-    </Container>
-  );
+  return <Router />
 }
 
-ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-    <CssBaseline />
-    <App />
-  </ThemeProvider>,
-  document.querySelector('#root'),
-);
+
+ReactDOM.render(<App />, document.querySelector('#root'));
     </script>
   </body>
 </html>
